@@ -4,6 +4,7 @@
    --main-bgcolor: #ff8906;
    --main-color: #fffffe;
    --paragraph-color: #a7a9be;
+
 }
 
 * {
@@ -15,6 +16,7 @@ body {
    color: white;
    font-family: 'Cairo', sans-serif;
    height: 100vh;
+   color-scheme: dark;
 }
 
 ::selection {
@@ -33,7 +35,7 @@ li {
 .crud {
    padding-left: 15px;
    padding-right: 15px;
-   margin: 0 auto;
+   margin: 10 auto;
 }
 
 @media (min-width: 768px) {
@@ -101,7 +103,8 @@ input:focus {
 }
 
 .inputs .price #total {
-   background-color: var(--main-bgcolor);
+   background-color: transparent;
+   transition: .3s;
    color: #fffffe;
    display: inline-block;
    height: 30px;
@@ -126,11 +129,6 @@ input:focus {
    }
 }
 
-.inputs .price #total::before {
-   content: "Total:";
-   font-weight: 600;
-   text-transform: capitalize;
-}
 
 button {
    background-color: var(--main-bgcolor);
