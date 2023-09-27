@@ -4,7 +4,7 @@
    --main-bgcolor: #ff8906;
    --main-color: #fffffe;
    --paragraph-color: #a7a9be;
-
+   --hover-color: #ff5601;
 }
 
 * {
@@ -65,6 +65,7 @@ li {
 nav {
    text-align: center;
 }
+
 .inputs #title {
    width: 100%;
 }
@@ -94,7 +95,7 @@ input {
 }
 
 input:focus {
-   border-color: #ff5601;
+   border-color: var(--hover-color);
 }
 
 .inputs .price input {
@@ -143,10 +144,22 @@ button {
    border-radius: 10px;
 }
 
-button:hover {
-   background-color: #ff5601;
+:where(.inputs button, .outputs button):hover {
+   background-color: var(--hover-color);
    letter-spacing: 3px;
 }
+
+nav button {
+   width: 200px;
+   margin: 20px;
+   font-size: 12.8px;
+}
+
+nav button:hover {
+   background-color: var(--hover-color);
+}
+
+
 
 @media (max-width: 767px) {
    button {
@@ -184,6 +197,18 @@ table button:hover {
    table {
       font-size: .6rem;
    }
+
+}
+
+@media (max-width: 900px) {
+   table thead tr th:first-child {
+      display: none;
+   }
+
+   table tbody tr td:first-child {
+      display: none;
+   }
+
 }
 
 @media (max-width: 432px) {
@@ -193,7 +218,7 @@ table button:hover {
 }
 
 #deleteAll {
-   background-color: #f44000;
+   background-color: var(--hover-color);
    width: 100%;
    border-radius: 10px;
    color: white;
@@ -207,6 +232,10 @@ table button:hover {
 }
 
 #deleteAll:hover {
-   background-color: #ff0000;
+   background-color: var(--hover-color);
    transform: translateY(-2px);
+}
+
+.highlight {
+   opacity: 0.5;
 }
