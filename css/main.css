@@ -231,11 +231,12 @@ table button:hover {
    display: none;
 }
 
+
 #deleteAll:hover {
    background-color: var(--hover-color);
    transform: translateY(-2px);
 }
 
-.highlight {
+.highlighter {
    opacity: 0.5;
 }

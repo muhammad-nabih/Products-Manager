@@ -1,6 +1,6 @@
 {
   "workbench.colorCustomizations": {
-    "activityBar.background": "#501A32",
+    "activityBar.background": "#2b0315",
     "titleBar.activeBackground": "#2e0015",
     "titleBar.activeForeground": "#fefcfdd7"
   },
@@ -30,6 +30,7 @@
     "السعر",
     "الصغير",
     "الصف",
+    "الصفوف",
     "العرض",
     "العنصر",
     "الفئة",
