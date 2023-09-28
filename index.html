@@ -32,24 +32,25 @@
   <main>
     <div class="crud">
       <section class="inputs">
-        <input type="text" id="title" placeholder="Title">
+        <input type="text" id="title" placeholder="Title" required>
         <div class="price">
-          <input type="number" placeholder="Price" id="price">
-          <input type="number" placeholder="Taxes" id="taxes">
-          <input type="number" placeholder="Ads" id="ads">
-          <input type="number" placeholder="Discount" id="discount">
+          <input type="number" placeholder="Price" id="price" min="0" required>
+          <input type="number" placeholder="Taxes" id="taxes" min="0">
+          <input type="number" placeholder="Ads" id="ads" min="0">
+          <input type="number" placeholder="Discount" id="discount" min="0">
           <small id="total"></small>
         </div>
         <input type="number" id="count" placeholder="Count">
-        <input type="text" id="category" placeholder="Category">
+        <input type="text" id="category" placeholder="Category" required>
         <button id="submit">Create</button>
       </section>
       <section class="outputs">
         <div class="searchBlock">
           <input type="text" id="search" placeholder="Search">
           <div class="btnSearch">
-            <button id="searchTitle">Search By Title</button>
-            <button id="searchCategory">Search By Category</button>
+            <button id="searchByTitle">Search By Title</button>
+            <button id="showAllProducts">Show All Products</button>
+            <button id="searchByCategory">Search By Category</button>
           </div>
         </div>
       </section>

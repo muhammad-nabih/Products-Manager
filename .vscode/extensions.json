@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "vincaslt.highlight-matching-tag",
-    "jgclark.vscode-todo-highlight"
+    "jgclark.vscode-todo-highlight",
+    "tomoki1207.pdf"
   ]
 }

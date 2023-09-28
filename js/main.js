@@ -10,14 +10,18 @@ const priceInputs = document.querySelectorAll('.price input[type="number"]');
 const totalElement = document.querySelector("#total");
 const tableBody = document.querySelector("tbody");
 const submit = document.querySelector("#submit");
+const search = document.querySelector("#search");
+const showAllProducts = document.querySelector("#showAllProducts");
+const searchByTitle = document.querySelector("#searchByTitle");
+const searchByCategory = document.querySelector("#searchByCategory");
 const sortPrice = document.querySelector("#sortPrice");
 const sortDate = document.querySelector("#sortDate");
 const sortTitle = document.querySelector("#sortTitle");
 const sortCategory = document.querySelector("#sortCategory");
+const deleteAll = document.getElementById("deleteAll");
 
 // Initialize dataProduct from local storage
 let dataProduct = [];
-
 if (localStorage.getItem("data")) {
   dataProduct = JSON.parse(localStorage.getItem("data"));
 }
@@ -29,10 +33,46 @@ priceInputs.forEach((input) => {
 
 submit.addEventListener("click", createOrUpdateProduct);
 
+// Todo: search by title
+searchByTitle.addEventListener("click", () =>
+  handleSearchByTitleOrCategory(dataProduct, "title")
+);
+searchByCategory.addEventListener("click", () =>
+  handleSearchByTitleOrCategory(dataProduct, "category")
+);
+showAllProducts.addEventListener("click", () =>
+  handleSearchByTitleOrCategory(dataProduct, "showAllProducts")
+);
+// SEARCH BY TITLE OR CATEGORY
+
+function handleSearchByTitleOrCategory(dataProduct, typeSearch) {
+  const searchValue = search.value.trim().toLowerCase();
+  if (typeSearch !== "") {
+    if (typeSearch === "title") {
+      console.log("title");
+      dataProduct = dataProduct.filter((product) => {
+        return product.title.toLowerCase().includes(searchValue);
+      });
+    } else if (typeSearch === "category") {
+      console.log("category");
+      dataProduct = dataProduct.filter((product) => {
+        return product.category.toLowerCase().includes(searchValue);
+      });
+    }
+  } else {
+    return dataProduct;
+  }
+
+  addProductsToPage(dataProduct);
+  setDataToLocalStorage(dataProduct);
+}
+
 sortPrice.addEventListener("click", sortProductsByPriceDescending);
 sortDate.addEventListener("click", sortProductsByDateDescending);
 sortTitle.addEventListener("click", sortProductsAlphabetically);
 sortCategory.addEventListener("click", sortProductsByCategory);
+
+// << ALL FUNCTIONS PROJECT>>
 
 // Function to calculate the total price
 function calculateTotalPrice() {
@@ -40,6 +80,7 @@ function calculateTotalPrice() {
   const taxesValue = parseFloat(priceInputs[1].value || 0);
   const adsValue = parseFloat(priceInputs[2].value || 0);
   const discountValue = parseFloat(priceInputs[3].value || 0);
+
   if (priceValue >= 0) {
     const totalPrice = priceValue + taxesValue + adsValue - discountValue;
     totalElement.textContent = `${totalPrice.toFixed(1)}`;
@@ -64,10 +105,10 @@ function createOrUpdateProduct() {
 // Function to create a new product
 function createProduct() {
   if (title.value !== "" && price.value !== "") {
-    if (count.value > 1) {
+    if (count.value >= 1) {
       for (let i = 1; i <= count.value; i++) {
         const newProduct = {
-          id:Date.now()+i,
+          id: Date.now() + i,
           title: title.value,
           price: price.value,
           taxes: taxes.value,
@@ -90,7 +131,6 @@ function createProduct() {
 }
 
 // Function to update a product
-
 function updateProduct() {
   const productId = parseInt(submit.getAttribute("data-product-id"));
 
@@ -187,7 +227,7 @@ function deleteProduct(productId) {
   addProductsToPage(dataProduct);
   setDataToLocalStorage(dataProduct);
 }
-const deleteAll = document.getElementById("deleteAll");
+
 // Function Delete All Products
 function showDeleteAll(dataProduct) {
   if (dataProduct.length > 1) {
@@ -199,8 +239,9 @@ function showDeleteAll(dataProduct) {
 showDeleteAll(dataProduct);
 deleteAll.addEventListener("click", () => {
   localStorage.clear();
-  addProductsToPage();
-  showDeleteAll();
+  dataProduct = [];
+  addProductsToPage(dataProduct);
+  showDeleteAll(dataProduct);
 });
 
 // Function to prepare product data for update
@@ -209,12 +250,9 @@ function prepareUpdateProduct(productId) {
     (product) => product.id === productId
   );
 
-  // we need three constants
-
-  // 2 - the row how i click on
   const rowClicked = document.querySelector(`tr[data-id="${productId}"]`);
 
-  const isHighlighter = rowClicked.classList.contains("highlighter"); // false
+  const isHighlighter = rowClicked.classList.contains("highlighter");
 
   let allRowContainHighlighter = document.querySelectorAll("tr.highlighter");
 

@@ -218,13 +218,13 @@ table button:hover {
 }
 
 #deleteAll {
-   background-color: var(--hover-color);
-   width: 100%;
+   background-color: red;
+   width: 80%;
    border-radius: 10px;
    color: white;
    font-weight: bold;
    letter-spacing: 1px;
-   margin: 10px auto;
+   margin: 20px auto;
    padding: 10px;
    cursor: pointer;
    transition: .3s ease-in-out;
@@ -233,8 +233,8 @@ table button:hover {
 
 
 #deleteAll:hover {
-   background-color: var(--hover-color);
-   transform: translateY(-2px);
+   background-color:rgba(255, 0, 0, 0.759);
+   transform: translateY(-2px) scale(1.1);
 }
 
 .highlighter {
