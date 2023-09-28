@@ -67,7 +67,7 @@ function createProduct() {
     if (count.value > 1) {
       for (let i = 1; i <= count.value; i++) {
         const newProduct = {
-          id: i,
+          id:Date.now()+i,
           title: title.value,
           price: price.value,
           taxes: taxes.value,
