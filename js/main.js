@@ -65,7 +65,7 @@ function createOrUpdateProduct() {
 function createProduct() {
   if (title.value !== "" && price.value !== "") {
     if (count.value > 1) {
-      for (let i = 1; i < count.value; i++) {
+      for (let i = 1; i <= count.value; i++) {
         const newProduct = {
           id: i,
           title: title.value,
@@ -178,6 +178,7 @@ function addProductsToPage(dataProduct) {
     row.appendChild(updateCell);
     tableBody.appendChild(row);
   }
+  showDeleteAll(dataProduct);
 }
 
 // Function to delete a product by ID
@@ -186,17 +187,21 @@ function deleteProduct(productId) {
   addProductsToPage(dataProduct);
   setDataToLocalStorage(dataProduct);
 }
-
+const deleteAll = document.getElementById("deleteAll");
 // Function Delete All Products
-function deleteAllProducts(dataProduct) {
-  const deleteAll = document.getElementById("deleteAll");
+function showDeleteAll(dataProduct) {
   if (dataProduct.length > 1) {
     deleteAll.style.display = "block";
   } else {
     deleteAll.style.display = "none";
   }
 }
-deleteAllProducts(dataProduct);
+showDeleteAll(dataProduct);
+deleteAll.addEventListener("click", () => {
+  localStorage.clear();
+  addProductsToPage();
+  showDeleteAll();
+});
 
 // Function to prepare product data for update
 function prepareUpdateProduct(productId) {
