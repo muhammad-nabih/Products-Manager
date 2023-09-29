@@ -33,7 +33,7 @@ priceInputs.forEach((input) => {
 
 submit.addEventListener("click", createOrUpdateProduct);
 
-//  search by title
+//  Function Search Title Or Category Selected
 searchByTitle.addEventListener("click", () =>
   handleSearchByTitleOrCategory(dataProduct, "title")
 );
@@ -196,13 +196,13 @@ function addProductsToPage(dataProduct) {
     categoryCell.textContent = product.category;
     const deleteCell = document.createElement("td");
     const deleteButton = document.createElement("button");
-    deleteButton.id="delete"
+    deleteButton.id = "delete";
     deleteButton.textContent = "Delete";
     deleteButton.addEventListener("click", () => deleteProduct(product.id));
     deleteCell.appendChild(deleteButton);
     const updateCell = document.createElement("td");
     const updateButton = document.createElement("button");
-    updateButton.id="update"
+    updateButton.id = "update";
     updateButton.textContent = "Update";
     updateButton.addEventListener("click", () =>
       prepareUpdateProduct(product.id)
@@ -262,7 +262,7 @@ function prepareUpdateProduct(productId) {
     // Add highlighter class
     rowClicked.classList.add("highlighter");
     if (productToUpdate) {
-      console.log(productToUpdate)
+      console.log(productToUpdate);
       title.value = productToUpdate.title;
       price.value = productToUpdate.price;
       taxes.value = productToUpdate.taxes;
