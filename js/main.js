@@ -33,7 +33,7 @@ priceInputs.forEach((input) => {
 
 submit.addEventListener("click", createOrUpdateProduct);
 
-// Todo: search by title
+//  search by title
 searchByTitle.addEventListener("click", () =>
   handleSearchByTitleOrCategory(dataProduct, "title")
 );
@@ -196,11 +196,13 @@ function addProductsToPage(dataProduct) {
     categoryCell.textContent = product.category;
     const deleteCell = document.createElement("td");
     const deleteButton = document.createElement("button");
+    deleteButton.id="delete"
     deleteButton.textContent = "Delete";
     deleteButton.addEventListener("click", () => deleteProduct(product.id));
     deleteCell.appendChild(deleteButton);
     const updateCell = document.createElement("td");
     const updateButton = document.createElement("button");
+    updateButton.id="update"
     updateButton.textContent = "Update";
     updateButton.addEventListener("click", () =>
       prepareUpdateProduct(product.id)
@@ -237,6 +239,7 @@ function showDeleteAll(dataProduct) {
   }
 }
 showDeleteAll(dataProduct);
+
 deleteAll.addEventListener("click", () => {
   localStorage.clear();
   dataProduct = [];
@@ -249,21 +252,17 @@ function prepareUpdateProduct(productId) {
   const productToUpdate = dataProduct.find(
     (product) => product.id === productId
   );
-
   const rowClicked = document.querySelector(`tr[data-id="${productId}"]`);
-
   const isHighlighter = rowClicked.classList.contains("highlighter");
-
   let allRowContainHighlighter = document.querySelectorAll("tr.highlighter");
-
   allRowContainHighlighter = allRowContainHighlighter.forEach((row) =>
     row.classList.remove("highlighter")
   );
-
   if (!isHighlighter) {
     // Add highlighter class
     rowClicked.classList.add("highlighter");
     if (productToUpdate) {
+      console.log(productToUpdate)
       title.value = productToUpdate.title;
       price.value = productToUpdate.price;
       taxes.value = productToUpdate.taxes;
